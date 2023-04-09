@@ -1,0 +1,88 @@
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> 
+<link href="game.css" rel="stylesheet">
+</head>
+<body>
+<div class="screen">
+
+<div class='solve'>
+	<div class=	'monster wobble'>
+		<img src='slime2.png'>
+	</div>
+	<img class = 'coins-img' src="coin.png">
+	<span class='friends'>0</span>
+	<div class='level'>
+	  L0
+	</div>
+	<div class='chosen'></div>
+	<div class='rule'></div>
+	<div class='inventory'>
+		<img class="weapon">
+		<img class="pet">
+		<img class="shield">
+	</div>	
+	<div class='player'>
+		<img src='dragon2.png'>
+		<div class='health'>
+			<span class='hero_health'>3</span><span class='hero_max_health'>/3</span>
+		</div>
+	</div>
+</div>
+
+<div class="start">
+	<h1>equation<span style='color:red'> dragon</span></h1>
+	<p>once upon a time thar was a dragon who wanted to make friends with monsters. To make friends, find their
+	favourite number.</p>
+	<p>
+		<img src="dragon2.png" style="height:30vmin">
+	</p>
+	<p>
+		(hit <span class=key>space</span> to start)
+	</p>
+</div>
+
+<div class="choice">
+	<h1><span style='color:gold' class='level'></span></h1>
+	<p class="story">
+		
+	</p>
+	<div class='cols'>
+	    <div>
+			<div class='choice0'></div>
+			<img src="none.png" class='choice_img0'>
+		</div>
+		<div>
+			<div class='choice1'></div>
+			<img src="none.png" class='choice_img1'>
+		</div>
+		<div>
+			<div class='choice2'></div>
+			<img src="none.png" class='choice_img2'>
+		</div>
+		<div>
+			<div class='choice3'></div>
+			<img src="none.png" class='choice_img3'>
+		</div>
+		<div>
+			<div class='choice4'></div>
+			<img src="none.png" class='choice_img4'>
+		</div>
+		<div>
+			<div class='choice5'></div>
+			<img src="none.png" class='choice_img5'>
+		</div>
+	</div>
+	<img src="coin.png" class='coins-img'>
+	<div class='friends'>0</div>
+</div>
+<div class="message"></div>
+
+</div>
+<script src="levels.js"></script>
+<script src="game.js"></script>
+
+</body>
+</html>
