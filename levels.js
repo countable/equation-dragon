@@ -48,7 +48,7 @@ Levels = [
 		mode: 'choice',
 		story: function() {
 			const C = {
-				story: 'A rainbow bridge.',
+				wording: 'A bridge guarded by multiple slimes.',
 				choices: [
 					'axiom_shrine',
 					{
@@ -140,7 +140,7 @@ Levels = [
 		story: function() {
 			return {
 				wording: 'you can buy anything you want if you have enough friends.',
-				choices: ['axiom_shrine', 'potion']
+				choices: ['axiom_shrine']
 			}
 		}
 	},
@@ -379,7 +379,7 @@ Levels = [
 		name: 'uncobeariables',
 		mode: 'solve',
 		spec: function(seeds) {
-			return seeds[0] + '*A+' + seeds[1] +'='+ seeds[0]*seeds[2] + seeds[1]
+			return seeds[0] + '*A+' + seeds[1] +'='+ (seeds[0]*seeds[2] + seeds[1])
 		},
 		rule: function(seeds) {
 			return 'Mmmm, berries. What is my favourite number?'

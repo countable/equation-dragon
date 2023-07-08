@@ -28,8 +28,7 @@ function format_level_name(level) {
 }
 
 function update_screen() {
-	id('hero_health').innerText = hero_health;
-	id('hero_max_health').innerText = "/"+hero_max_health;
+	id('hero_karma').innerText = get_karma();
 	id('friends', Object.keys(friends).length);
 	console.log('NAME', level.name, typeof level.name)
 	id('level', format_level_name(level.name))
@@ -41,12 +40,12 @@ function update_screen() {
 	// choice levels.
 	id('story').innerText = story.wording
 	if (story.choices) {
-		for (let i=0;i<6;i++) {
+		for (let i=0;i<5;i++) {
 			if (i < story.choices.length) {
 				const choice_name = format_level_name(story.choices[i])
 				id('choice'+i).style.display='block'
 				choice_level = get_level(story.choices[i])
-				id('choice_img'+i).src = choice_level.img ? story.choices[i]+'.png' : 'none.png'
+				
 				const action = get_action_word(story.choices[i])
 				
 				let choice_class
@@ -56,7 +55,7 @@ function update_screen() {
 					choice_class='disabled-key'
 				}
 				
-				id('choice'+i).innerHTML =
+				id('choice'+i+' p').innerHTML =
 					"<span class="+choice_class+">" + i + "</span><br>"
 					+ action + ' ' + choice_name
 			} else {
@@ -65,7 +64,7 @@ function update_screen() {
 		}
 	}
 
-	id('pet').src=(inventory.pet.name || 'none') + '.png'
+	//id('pet').src=(inventory.pet.name || 'none') + '.png'
 }
 
 function get_action_word(level_name) {
@@ -80,8 +79,6 @@ function get_action_word(level_name) {
 const inventory = {
 	pet: {},
 };
-let hero_health = 3;
-let hero_max_health = 3;
 
 let level_value = '';
 let story = {choices:[]}
@@ -101,7 +98,7 @@ const friends = {}
 function get_karma() {
 	let exp = 0
 	for (let k in friends) {
-		exp += Math.log(friends[k]+1)/Math.log(5)
+		exp += Math.log(friends[k]+1)/Math.log(3)
 	}
 	return Math.floor(exp)
 }
@@ -127,6 +124,7 @@ function start_level(name) {
 		rule = level.rule(seeds);
 	} else if (level.mode === 'choice') {
 		story = level.story()
+		id('story-img').src = level.name.replace(/\s/g, "_") + '.png'
 		console.log('story', story)
 	}
 	update_screen()
@@ -136,43 +134,11 @@ let level = Levels[0]
 
 function hurt() {
 	sound('hurt')
-    hero_health --;
     key_idx = 0;
     update_screen() // let player see their failure.
-    if (hero_health < 1) {
-	  music.pause()
-	  id('player').className='dead player'
-	  sound('dead')
-	  setTimeout(function(){
-		  music.play()
-		  id('player').className='player'
-		  
-	  }, 2000)
-    }
     id('chosen').innerHTML='';
     level_value = level.spec(seeds)
 }
-
-/*items = [{
-		cost: 10,
-		name: 'Potion',
-		type: 'consumable',
-		effect: function() {
-			hero_health = hero_max_health;
-			message('you healed.')
-			update_screen()
-		}
-	}, {
-		cost: 25,
-		name: 'Sword',
-		type: 'weapon',
-		power: 2
-	}, {
-		cost: 15,
-		name: 'Knife',
-		type: 'weapon',
-		power: 1
-	}]*/
 
 
 function get_level_attr(attr) {
@@ -213,7 +179,7 @@ document.addEventListener('keypress', function(e) {
 		}
 	} else if (mode === 'solve') {
 
-		if (!isNaN(parseInt(e.key)) && hero_health > 0) {
+		if (!isNaN(parseInt(e.key))) {
 			let letter = letters[key_idx]
 			key_idx++;
 			level_value = level_value.replace(new RegExp(letter, "g"),e.key)
