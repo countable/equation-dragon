@@ -23,6 +23,20 @@ Levels = [
 		}
 	},
 	{
+		name: 'secret_grove',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "A grove of infinite color.",
+				choices: [
+					'axiom_shrine',
+					'large_number_slime',
+				]
+			}
+			return C
+		}
+	},
+	{
 		name: 'axiom_shrine',
 		mode: 'choice',
 		story: function() {
@@ -32,14 +46,16 @@ Levels = [
 					'number_slime',
 					'multi_slime_bridge',
 					{
-						level: 'store',
-						requirement: 'friends',
-						qty: 5
+						level: 'store'
 					},
 					{level: 'secret_grove', requirement: 'friends', qty: 12},
 
 				]
 			}
+			if (already_hurt) {
+				message("Your hurt feelings are healed.")
+			}
+			already_hurt = false;
 			return C
 		}
 	},
@@ -55,6 +71,16 @@ Levels = [
 						level: 'tree3',
 						requirement: 'multi_slime',
 						qty: 1,
+					},
+					{
+						level: 'tree4',
+						requirement: 'friends',
+						qty: 15
+					},
+					{
+						level: 'quiz_troll',
+						requirement: 'karma',
+						qty: '7'
 					}
 				]
 			}
@@ -66,6 +92,7 @@ Levels = [
 			return C
 		}
 	},
+	
 	{
 		name: 'tree3',
 		mode: 'choice',
@@ -73,10 +100,68 @@ Levels = [
 			const C = {
 				wording: "You stumble on a dense cluster of TREE3.",
 				choices: [
-					'axiom_shrine',
+					'multi_slime_bridge',
 					'beariables',
 					{level: 'fractional_cave', requirement: 'beariables', qty:5},
 					{level: 'unbeariables', requirement: 'friends', qty: 8},
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'tree4',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "The branches of TREE4 extend upward into the sky.",
+				choices: [
+					'multi_slime_bridge',
+					'owl_zero',
+					{level: 'door_1', requirement: 'key'}
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'door_1',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "You enter the first gate.",
+				choices: [
+					'tree4',
+					{level: 'door_2', requirement: 'large_multi_slime', qty:3}
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'door_2',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "You enter the first gate.",
+				choices: [
+					'door_1',
+					{level: 'door_3', requirement: 'large_multi_slime', qty:3}
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'door_3',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "You enter the final gate.",
+				choices: [
+					'door_2',
+					'sequence_specter',
+					{level: 'exponential_peaks', requirement: 'denominator', qty:3}
 				]
 			}
 			return C
@@ -87,22 +172,12 @@ Levels = [
 		mode: 'choice',
 		story: function() {
 			const C = {
-				wording: "A cave which is half its own height.",
+				wording: "A cave which is half as tall.",
 				choices: [
 					'tree3',
-				]
-			}
-			return C
-		},
-	},
-	{
-		name: 'secret_grove',
-		mode: 'choice',
-		story: function() {
-			const C = {
-				wording: "A hidden thicket behind axiom shrine.",
-				choices: [
-					'axiom_shrine',
+					'numerator',
+					'denominator',
+					'root_tunnels',
 				]
 			}
 			return C
@@ -115,7 +190,53 @@ Levels = [
 			const C = {
 				wording: "It is not always rational to enter here.",
 				choices: [
+					'root_digger',
 					'fractional_cave',
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'lower_root_tunnels',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "It is not always rational to go deeper.",
+				choices: [
+					'root_tunnels',
+					'deep_root_digger',
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'deep_root_tunnels',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "It is not always rational to go deeper.",
+				choices: [
+					'lower_root_tunnels',
+					'catacomb',
+					'deep_root_digger',
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'catacomb',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "It is not always rational to go deeper.",
+				choices: [
+					'deep_root_tunnels',
+					'catacomb',
+					'catkuna',
+					'racuna'
 				]
 			}
 			return C
@@ -128,7 +249,21 @@ Levels = [
 			const C = {
 				wording: "You climb to the highest power.",
 				choices: [
-					'fractional_cave',
+					'door_3',
+					'equation_dragon'
+				]
+			}
+			return C
+		},
+	},
+	{
+		name: 'end',
+		mode: 'choice',
+		story: function() {
+			const C = {
+				wording: "You have found a dragon math friend. Thanks for playing our game. (Jasnah and Clark)",
+				choices: [
+
 				]
 			}
 			return C
@@ -140,7 +275,30 @@ Levels = [
 		story: function() {
 			return {
 				wording: 'you can buy anything you want if you have enough friends.',
-				choices: ['axiom_shrine']
+				choices: [
+					'axiom_shrine',
+					{
+						level: 'key',
+						mode:'item',
+						type:'holding',
+						requirement: 'karma',
+						description: 'opens first door.',
+						qty: 20},
+					{
+						level: 'potion',
+						mode:'item',
+						type:'consumable',
+						requirement: 'karma',
+						description: 'makes you feel better.',
+						qty: 10},
+					{
+						level: 'cat',
+						mode:'item',
+						type:'pet',
+						requirement: 'catkuna',
+						description: 'increases karma.',
+						qty: 3},
+					]
 			}
 		}
 	},
@@ -153,6 +311,90 @@ Levels = [
 			message('You healed 3 health.')
 			hero_health = Math.max(hero_max_health, hero_health + 3)
 		}
+	},
+	{
+		name: 'quiz_troll',
+		mode: 'solve',
+		spec: function(seeds) {
+			return "A&gt;" + (seeds[0]-1)+" && A&lt;"+(seeds[0]+1)
+		},
+		rule: function(seeds) {
+			return 'Choose a number between '+(seeds[0]-1)+" AND "+(seeds[0]+1)
+		},
+		next: 'multi_slime_bridge'
+	},
+	{
+		name: 'equation_dragon',
+		mode: 'solve',
+		spec: function(seeds) {
+			let ans = (seeds[0] * seeds[1]) - (seeds[2] * seeds[3])
+			return ans = "=A*B-C*"+seeds[3]
+		},
+		rule: function(seeds) {
+			return 'Solve for A,B,C,D'
+		},
+		next: 'end'
+	},
+	
+	{
+		name: 'root_digger',
+		mode: 'solve',
+		spec: function(seeds) {
+			return "A=Math.sqrt("+(seeds[0]*seeds[0])+")"
+		},
+		rule: function(seeds) {
+			return 'What number times itself is '+(seeds[0]*seeds[0])+'?'
+		},
+		next: 'lower_root_tunnels'
+	},
+	{
+		name: 'deep_root_digger',
+		mode: 'solve',
+		spec: function(seeds) {
+			let ans = seeds[0]+seeds[1]
+			let v = get_variable_for(ans)
+			return v+"=Math.sqrt("+(ans * ans)+")"
+		},
+		rule: function(seeds) {
+			return 'What number times itself is '+ans*ans+'?'
+		},
+		next: 'deep_root_tunnels'
+	},
+	{
+		name: 'catkuna',
+		mode: 'solve',
+		spec: function(seeds) {
+			v = get_variable_for(seeds[0]*seeds[1]*seeds[2])
+			return v+"="+seeds[0]+"*"+seeds[1]+"*"+seeds[2]
+		},
+		rule: function(seeds) {
+			return 'Multiply 3 numbers.'
+		},
+		next: 'lower_root_tunnels'
+	},
+	{
+		name: 'racuna',
+		mode: 'solve',
+		spec: function(seeds) {
+			v = get_variable_for(seeds[0]+seeds[1]+seeds[2]+seeds[3]+seeds[4])
+			return v+"="+seeds[0]+"+"+seeds[1]+"+"+seeds[2]+"+"+seeds[3]+"+"+seeds[4]
+		},
+		rule: function(seeds) {
+			return 'Add 5 numbers.'
+		},
+		next: 'lower_root_tunnels'
+	},
+	{
+		name: 'owl_zero',
+		mode: 'solve',
+		spec: function(seeds) {
+			v = get_variable_for(seeds[0]*seeds[1]+seeds[2])
+			return "0="+v+"-("+seeds[0]+"*"+seeds[1]+"+"+seeds[2]+")"
+		},
+		rule: function(seeds) {
+			return 'Owl says, solve the equation so it equals zero.'
+		},
+		next: 'tree4'
 	},
 	{
 		name: 'number_slime',
@@ -174,7 +416,7 @@ Levels = [
 		rule: function(seeds) {
 			return 'Type both digits of the number A then B.'
 		},
-		next: 'add_slime'
+		next: 'large_add_slime'
 	},
 	{
 		name: 'green_tunnel',
@@ -202,7 +444,24 @@ Levels = [
 			//return 'Type 2 numbers that add to '+ (seeds[0]+seeds[1])
 		},
 		next: 'minus_slime',
-		reward: 2
+	},
+	{
+		name: 'large_add_slime',
+		mode: 'solve',
+		spec: function(seeds) {
+			//return 'A+B='+(seeds[0] + seeds[1])
+			const first = seeds[0] + seeds[1]
+			const second = seeds[2] + seeds[3]
+			let ans = first+second
+			return first + '+' + second + '=' + get_variable_for(ans)
+		},
+		rule: function(seeds) {
+			const first = seeds[0] + seeds[1]
+			const second = seeds[2] + seeds[3]
+			return 'What is ' + first + ' plus ' + second + '?'
+			//return 'Type 2 numbers that add to '+ (seeds[0]+seeds[1])
+		},
+		next: 'large_minus_slime',
 	},
 	{
 		name: 'divide_slime',
@@ -219,8 +478,13 @@ Levels = [
 			return 'How many is ' + first + ' can you divide ' + first*second + ' into?'
 			//return 'Type 2 numbers, 3 of the first is 2 of the other'
 		},
-		next: 'divide_slime',
-		reward: 5
+		next: function() {
+			if (Math.random() < Math.max(0.15, 0.03*get_karma())) {
+				return 'large_divide_slime'
+			} else {
+				return 'axiom_shrine'
+			}
+		}
 	},
 	{
 		name: 'large_divide_slime',
@@ -237,8 +501,7 @@ Levels = [
 			return 'How many is ' + first + ' can you divide ' + first*second + ' into?'
 			//return 'Type 2 numbers, 3 of the first is 2 of the other'
 		},
-		next: 'divide_slime',
-		reward: 5
+		next: 'secret_grove',
 	},
 	{
 		name: 'minus_slime',
@@ -257,25 +520,23 @@ Levels = [
 				return 'multi_slime'
 			}
 		},
-		reward: 7
 	},
 	{
 		name: 'large_minus_slime',
 		mode: 'solve',
 		spec: function(seeds) {
-			return ((seeds[0]+1) + '' + seeds[1] + '-' + seeds[2]) + '=A'
+			return ((seeds[0]+1) + seeds[1] + '-' + seeds[1]) + '=' + get_variable_for(seeds[0]+1)
 		},
 		rule: function(seeds) {
-			return 'What is ' + seeds[2] + ' less than ' + (seeds[0]+1) + '' + seeds[1]
+			return 'What is ' + seeds[1] + ' less than ' + (seeds[0]+1 + seeds[1])
 		},
 		next: function() {
-			if (Math.random() < Math.max(0.3, 0.05*get_karma())) {
+			if (Math.random() < Math.max(0.1, 0.02*get_karma())) {
 				return 'large_function_slime'
 			} else {
 				return 'large_multi_slime'
 			}
 		},
-		reward: 7
 	},
 	{
 		name: 'function_slime',
@@ -294,10 +555,10 @@ Levels = [
 		name: 'large_function_slime',
 		mode: 'solve',
 		spec: function(seeds) {
-			return 'A*A*A='+(seeds[0] * seeds[0] * seeds[0])
+			return "A*(A-1)=" + (seeds[0]||1)*((seeds[0]||0)-1)
 		},
 		rule: function(seeds) {
-			return 'Type a number, which times itself twice is '+ (seeds[0]*3)
+			return 'Solve for A.'
 		},
 
 		next: 'axiom_shrine',
@@ -320,7 +581,13 @@ Levels = [
 		},
 		reward: 10,
 		key: 'tree3',
-		next: 'axiom_shrine'
+		next: function() {
+			if (Math.random() < 0.07*get_karma()) {
+				return 'divide_slime'
+			} else {
+				return 'axiom_shrine'
+			}
+		},
 	},
 	{
 		name: 'large_multi_slime',
@@ -335,8 +602,6 @@ Levels = [
 			const second = seeds[1]
 			return 'How many is ' + first + ' times ' + second + '?'
 		},
-		reward: 10,
-		key: 'tree3',
 		next: 'axiom_shrine'
 	},
 	{
@@ -370,7 +635,7 @@ Levels = [
 			return seeds[1] + seeds[0] + '='+seeds[0] + "+A"
 		},
 		rule: function(seeds) {
-			return 'You have '+(seeds[0])+' berries. How many must you pick, to have '+(seeds[0]+seeds[1])+' left?'
+			return 'You have '+(seeds[0])+' berries. How many must you pick, to have '+(seeds[0]+seeds[1])+'?'
 		},
 		reward: 5,
 		next: 'tree3'
@@ -395,6 +660,41 @@ Levels = [
 		},
 		rule: function(seeds) {
 			return 'Make these fractions match.'
+		},
+		reward: 5,
+		next: 'tree3'
+	},
+	{
+		name: 'denominator',
+		mode: 'solve',
+		spec: function(seeds) {
+			let s0 = seeds[0] || 1
+			let s1 = seeds[1] || 1
+			let s2 = seeds[2] || 1
+			let v = get_variable_for(s0*s1)
+			return s0+'/'+s0*s2+"="+s1+"/"+v
+		},
+		rule: function(seeds) {
+			return 'Make these fractions match.'
+		},
+		reward: 5,
+		next: 'tree3'
+	},
+	{
+		name: 'sequence_specter',
+		mode: 'solve',
+		spec: function(seeds) {
+			let ans=0
+			let eq= ''
+			for (var i=1;i< seeds[0];i++) {
+				eq += "+"+i
+				ans += i
+			}
+			eq = get_variable_for(ans) + "=0"+eq
+			return eq
+		},
+		rule: function(seeds) {
+			return 'What is the sum?'
 		},
 		reward: 5,
 		next: 'tree3'

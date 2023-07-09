@@ -9,16 +9,13 @@
 }
 @keyframes hop {
 	0% { transform: translateY(0%); } 
-	15% { transform: translateY(-5%) rotate(-1deg); } 
-	30% { transform: translateY(5%) rotate(1deg); } 
-	45% { transform: translateY(-3%) rotate(-1deg); } 
-	60% { transform: translateY(3%) rotate(1deg); }
-	75% { transform: translateY(-2%) rotate(-1deg); }
+	15% { transform: translateY(0) scaleX(1.07); } 
+	60% { transform: translateY(-9%) rotate(1deg); } 
 	100% { transform: translateY(0%); }
 }
 body {
 	font-family: 'VT323', monospace;
-	font-size: 6vmin;
+	font-size: 5vmin;
 	background: black
 }
 * {
@@ -47,9 +44,7 @@ body {
 .wobble.large img {
 	animation: wobble 6s infinite;
 }
-.large {
-	transform: scale(2)
-}
+
 .chosen {
 	font-size: 10vmin;
 	line-height: 10vmin;
@@ -120,7 +115,8 @@ body {
 	margin: -45vmin 0 0 -45vmin;
 	width: 90vmin;
 	height: 90vmin;
-	background: gold;
+	border: 1vmin solid gold;
+	background: white;
 }
 .start, .choice {
 	margin: -50vmin 0 0 -50vmin;
@@ -138,13 +134,17 @@ h1 {
 	position: absolute;
 }
 .player {
-	top: 61vmin;
+	top: 66vmin;
 }
 .monster img, .player img {
-	width: 20vmin
+	width: 25vmin
 }
 .monster {
-	top: 25%;
+	top: 18%;
+}
+.large {
+	transform: scale(1.8);
+	top: 11%;
 }
 .dead img {
 	transform: rotate(180deg);
@@ -160,15 +160,15 @@ h1 {
 	max-width: 40vmin;
 }
 .inventory {
-	display: flex;
-	top: 0;
+	display: block;
+	bottom: 0;
 	left: 0;
-	width: 50vmin;
-	height: 10vmin;
-	display: none;
+	width: 30vmin;
+	height: 30vmin;
 }
 .inventory>img{
-	flex: 1;
+	width:12vmin;
+	
 }
 .choice_img1, .choice_img2, .choice_img0 {
 	max-width: 100%;
@@ -176,7 +176,6 @@ h1 {
 }
 .health {
 	display: block;
-	
 }
 .solve, .start, .choice {
 	display: none

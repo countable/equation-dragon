@@ -12,17 +12,15 @@
 	<div class=	'monster wobble'>
 		<img src='slime2.png'>
 	</div>
-	<img class = 'coins-img' src="coin.png">
-	<span class='friends'>0</span>
 	<div class='level'>
 	  L0
 	</div>
 	<div class='chosen'></div>
 	<div class='rule'></div>
 	<div class='inventory'>
-		<img class="weapon">
+		<img class="consumable">
 		<img class="pet">
-		<img class="shield">
+		<img class="holding">
 	</div>	
 	<div class='player'>
 		<img src='rainbow_wyrmling.png'>
@@ -64,15 +62,18 @@
 			<p></p>
 		</div>
 	</div>
-	<img src="coin.png" onclick='show_friends()' class='friends-img'>
-	<div class='friends' onclick='show_friends()'>0</div>
-	<div class="karma" onclick='show_friends()'>
-		<span class='hero_karma'>0</span>
-	</div>
+
 
 <div class="message"></div>
 
 </div>
+
+	<img src="stats.png" onclick='show_friends()' class='friends-img'>
+	<div class='friends' onclick='show_friends()'>0</div>
+	<div class="karma" onclick='show_friends()'>
+		<span class='hero_karma'>0</span>
+	</div>
+	
 <script src="levels.js"></script>
 <script src="game.js"></script>
 
