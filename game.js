@@ -211,7 +211,7 @@ function choice_allowed(choice_obj) {
 	else if (choice_obj.requirement == "karma") {
 		return get_karma() >= choice_obj.qty
 	} else if (choice_obj.requirement) {
-		return (friends[choice_obj.requirement] && friends[choice_obj.requirement] > choice_obj.qty)
+		return (friends[choice_obj.requirement] && friends[choice_obj.requirement] >= choice_obj.qty)
 		   || (inventory.holding && inventory.holding==choice_obj.requirement)
 	}
 	return true
