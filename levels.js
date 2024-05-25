@@ -148,7 +148,7 @@ Levels = [
 					'door_1',
 					{level: 'door_3', requirement: 'large_multi_slime', qty:3}
 				]
-			}
+			}3
 			return C
 		},
 	},
@@ -328,7 +328,7 @@ Levels = [
 		mode: 'solve',
 		spec: function(seeds) {
 			let ans = (seeds[0] * seeds[1]) - (seeds[2] * seeds[3])
-			return ans = "=A*B-C*"+seeds[3]
+			return ans + "=A*B-C*"+seeds[3]
 		},
 		rule: function(seeds) {
 			return 'Solve for A,B,C,D'
@@ -684,7 +684,7 @@ Levels = [
 			let s0 = seeds[0] || 1
 			let s1 = seeds[1] || 1
 			let s2 = seeds[2] || 1
-			let v = get_variable_for(s0*s1)
+			let v = get_variable_for(s2*s1)
 			return s0+'/'+s0*s2+"="+s1+"/"+v
 		},
 		rule: function(seeds) {

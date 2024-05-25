@@ -77,7 +77,13 @@ function update_screen() {
 				}
 				requirement = ''
 				if (choice.requirement) {
-					requirement = ' <br><img src="'+get_img_src(choice.requirement)+'" width=35>'+
+					let width;
+					if (choice.requirement.includes("large")) {
+						width=50
+					} else {
+						width=35
+					}
+					requirement = ' <br><img src="'+get_img_src(choice.requirement)+'" width='+w+'>'+
 					'<span style="color:darkblue">'+(choice.qty||'')+'</span>'
 				}
 				id('choice'+i+' p').innerHTML =
