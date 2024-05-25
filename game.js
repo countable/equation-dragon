@@ -83,7 +83,7 @@ function update_screen() {
 					} else {
 						width=35
 					}
-					requirement = ' <br><img src="'+get_img_src(choice.requirement)+'" width='+w+'>'+
+					requirement = ' <br><img src="'+get_img_src(choice.requirement)+'" width='+width+'>'+
 					'<span style="color:darkblue">'+(choice.qty||'')+'</span>'
 				}
 				id('choice'+i+' p').innerHTML =
