@@ -148,7 +148,7 @@ Levels = [
 					'door_1',
 					{level: 'door_3', requirement: 'large_multi_slime', qty:3}
 				]
-			}3
+			}
 			return C
 		},
 	},
