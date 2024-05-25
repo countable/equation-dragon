@@ -221,10 +221,10 @@ function choice_allowed(choice_obj) {
  *   Takes strings like "1*1" and returns "1x1"
  */
 function format_level_value(formula) {
-	formula = formula.replace("*", "&times;")
-	formula = formula.replace("&&", "AND")
-	formula = formula.replace(">", "&gt;")
-	formula = formula.replace("<", "&lt;")
+	formula = formula.replace("*", "&times;").replace("*", "&times;")
+	formula = formula.replace("&&", "AND").replace("&&", "AND")
+	formula = formula.replace(">", "&gt;").replace(">", "&gt;")
+	formula = formula.replace("<", "&lt;").replace("<", "&lt;")
 	return formula
 }
 

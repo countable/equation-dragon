@@ -595,7 +595,7 @@ Levels = [
 		spec: function(seeds) {
 			const first = seeds[0]
 			const second = seeds[1]
-			return first + "*" + second + '=A'
+			return first + "*" + second + '=' + get_variable_for(first*second)
 		},
 		rule: function(seeds) {
 			const first = seeds[0]
@@ -656,13 +656,26 @@ Levels = [
 		name: 'numerator',
 		mode: 'solve',
 		spec: function(seeds) {
+			var denom = (seeds[0]+2)*2
+			return '1/2='+get_variable_for(denom/2)+'/'+denom
+		},
+		rule: function(seeds) {
+			return 'Make these fractions match.'
+		},
+		reward: 5,
+		next: 'fractional_cave'
+	},
+	{
+		name: 'large_numerator',
+		mode: 'solve',
+		spec: function(seeds) {
 			return seeds[0]+'/'+seeds[0]*seeds[2]+"=A/"+seeds[1]*seeds[2]
 		},
 		rule: function(seeds) {
 			return 'Make these fractions match.'
 		},
 		reward: 5,
-		next: 'tree3'
+		next: 'fractional_cave'
 	},
 	{
 		name: 'denominator',
@@ -678,7 +691,7 @@ Levels = [
 			return 'Make these fractions match.'
 		},
 		reward: 5,
-		next: 'tree3'
+		next: 'fractional_cave'
 	},
 	{
 		name: 'sequence_specter',
